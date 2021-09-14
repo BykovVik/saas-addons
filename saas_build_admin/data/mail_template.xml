@@ -43,7 +43,7 @@
                         Admin login: ${object.login}<br/>
                         Admin password: ${ctx.get('build_admin_password')}<br/>
                         <br/>
-                        To change your password:<br/>
+                        To change your password: <a href="/my/home">Manage your acccount</a><br/>
                         <ul>
                             <li>Login to your build</li>
                             <li>Click on your avatar</li>
