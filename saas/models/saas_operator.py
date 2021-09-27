@@ -39,7 +39,6 @@ class SAASOperator(models.Model):
     # host = fields.Char()
     # port = fields.Char()
     db_url_template = fields.Char('DB URLs', help='Avaialble variables: {db_name}')
-    db_name_template = fields.Char('DB Names', required=True, help='Avaialble variables: {unique_id}')
     template_operator_ids = fields.One2many('saas.template.operator', 'operator_id')
 
     def get_mandatory_modules(self):
@@ -161,7 +160,7 @@ class SAASOperator(models.Model):
     def generate_db_name(self):
         self.ensure_one()
         sequence = self.env['ir.sequence'].next_by_code('saas.db')
-        return self.db_name_template.format(unique_id=sequence)
+        return "fast-build-{unique_id}".db_name_template.format(unique_id=sequence)
 
     def _get_mandatory_args(self, db):
         self.ensure_one()

@@ -4,6 +4,7 @@
 - **Improvement:** build name is now readonly
 - **Improvement:** reorganized menu items
 - **Improvement:** operators menu is shown only on debug mode
+- **Improvement:** removed redundant "DB Names" field from operator
 
 `3.0.0`
 -------
