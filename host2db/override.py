@@ -28,16 +28,24 @@ class Host2DBConfig(configparser.ConfigParser):
         if self.SECTION not in self:
             self[self.SECTION] = {}
 
+    def _save_config(self):
+        with open(self.config_filename, "w") as f:
+            self.write(f)
+
     def assign_host_to_db(self, host, db):
         self.set(self.SECTION, host, db)
 
     def unassign_host(self, host):
         self.remove_option(self.SECTION, host)
 
+    def remove_option(self, section, option):
+        res = super(Host2DBConfig, self).remove_option(section, option)
+        self._save_config()
+        return res
+
     def set(self, section, option, value=None):
         res = super(Host2DBConfig, self).set(section, option, value)
-        with open(self.config_filename, "w") as f:
-            self.write(f)
+        self._save_config()
         return res
 
     def get_db_by_host(self, host):
