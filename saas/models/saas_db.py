@@ -7,18 +7,8 @@ from odoo import models, fields, tools, api
 
 class SAASDB(models.Model):
     _name = 'saas.db'
-    _inherit = 'mail.thread.cc'
+    _inherit = ['mail.thread.cc', 'saas.operator']
     _description = 'Build'
-
-    @api.model
-    def message_new(self, msg_dict, custom_values=None):
-        if custom_values is None:
-            custom_values = {}
-        cc_values = {
-            'email_cc': ", ".join(self._mail_cc_sanitized_raw_dict(msg_dict.get('cc')).values()),
-        }
-        cc_values.update(custom_values)
-        return super(SAASDB, self).message_new(msg_dict, cc_values)
 
     name = fields.Char('Name', help='Technical Database name')
     operator_id = fields.Many2one('saas.operator', required=True)
