@@ -1,6 +1,5 @@
 <!--# Copyright 2019 Denis Mudarisov <https://www.it-projects.info/team/trojikman>
     # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
-
 <odoo>
     <record id="saas_operator_form_view" model="ir.ui.view">
         <field name="name">saas.operator.form</field>
@@ -8,6 +7,19 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button 
+                            name="action_show_builds" 
+                            type="object" 
+                            class="oe_stat_button" 
+                            icon="fa-list">
+                            <field
+                                string="Build counts"
+                                name="build_count"
+                                widget="statinfo"
+                            />
+                        </button>
+                    </div>
                     <group>
                         <field name="name"/>
                         <field name="type"/>

@@ -7,10 +7,10 @@ from odoo import models, fields
 
 class SAASDB(models.Model):
     _name = 'saas.db'
-    _inherit = 'mail.thread.cc'
+    _inherit = ['mail.thread.cc', 'saas.operator']
     _description = 'Build'
 
-    name = fields.Char('Name', help='Technical Database name', readonly=True)
+    name = fields.Char('Name', help='Technical Database name')
     operator_id = fields.Many2one('saas.operator', required=True)
     type = fields.Selection([
         ('template', 'Template DB'),
