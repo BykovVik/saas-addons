@@ -23,8 +23,13 @@
                 <field name="expiration_state" invisible="1"/>
             </xpath>
             <xpath expr="//tree" position="attributes">
+<<<<<<< HEAD
                 <attribute name="decoration-warning">expiration_state == "recently_expired"</attribute>
                 <attribute name="decoration-danger">expiration_state == "expired"</attribute>
+=======
+                <attribute name="decoration-warning">expiration_state == "Recently finished"</attribute>
+                <attribute name="decoration-danger">expiration_state == "Finished"</attribute>
+>>>>>>> saas_expiration: added color scheme for no expired data
             </xpath>
         </field>
     </record> 
