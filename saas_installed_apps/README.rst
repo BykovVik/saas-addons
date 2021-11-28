@@ -3,11 +3,7 @@
    :alt: License: AGPL-3
 
 ===========================
-<<<<<<< HEAD
  SaaS: List installed apps
-=======
- SaaS: saas_installed_apps
->>>>>>> add module saas_installed_apps and editing a module saas_access_apps
 ===========================
 
 This module shows installed apps.
