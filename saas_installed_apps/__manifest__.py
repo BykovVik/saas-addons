@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": """SaaS: saas_installed_apps""",
+    "name": """SaaS: List installed apps""",
     "summary": """This module disallows anyone to install apps on build and shows installed apps.""",
     "category": "Hidden",
     # "live_test_url": "http://apps.it-projects.info/shop/product/DEMO-URL?version=14.0",
@@ -26,14 +26,4 @@
     "uninstall_hook": None,
     "auto_install": False,
     "installable": True,
-    # "demo_title": "SaaS: access apps (master)",
-    # "demo_addons": [
-    # ],
-    # "demo_addons_hidden": [
-    # ],
-    # "demo_url": "DEMO-URL",
-    # "demo_summary": "SHORT DESC",
-    # "demo_images": [
-    #    "images/MAIN_IMAGE",
-    # ]
 }

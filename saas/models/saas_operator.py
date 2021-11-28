@@ -46,21 +46,16 @@ class SAASOperator(models.Model):
         for record in self:
             record.build_count = self.env['saas.db'].search_count([("operator_id", "=", self.id)])
         
-        
-
     def action_show_builds(self):
         self.ensure_one()
-        form_view = self.env.ref("saas.saas_operator_form_view", raise_if_not_found=False)
-        tree_view = self.env.ref("saas.saas_operator_tree_view", raise_if_not_found=False)
         action = {
             "type": "ir.actions.act_window",
             "name": "Builds and templates",
             "res_model": "saas.db",
-            "view_mode": "tree,form",
+            "views": [[False, "tree"], [False, "form"]],
             "domain": [["operator_id", "=", self.id]],
         }
-        if tree_view and form_view:
-            action["views"] = [(tree_view.id, "tree"), (form_view.id, "form")]
+        
         return action
 
 
