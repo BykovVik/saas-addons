@@ -26,7 +26,7 @@ class SaasDb(models.Model):
     expiration_state = fields.Selection(
         selection = [
             ("expired", "Finished"),
-            ("recently_expired", "Recently finished"),
+            ("expiring_soon", "Expiring soon"),
             ("active", "Active"),
         ],
         compute="_compute_expiration_state"
@@ -38,12 +38,11 @@ class SaasDb(models.Model):
 
         for build in self:
 
-            if time_now > build.expiration_date and time_now > (build.expiration_date + timedelta(days=2)):
+            if time_now > build.expiration_date:
                 build.expiration_state = "expired"
 
-            elif time_now > build.expiration_date and time_now <= (build.expiration_date + timedelta(days=2)):
-
-                build.expiration_state = "recently_expired"
+            elif time_now < build.expiration_date and time_now >= (build.expiration_date - timedelta(days=2)):
+                build.expiration_state = "expiring_soon"
 
             else:
                 build.expiration_state = "active" 
