@@ -35,7 +35,7 @@ def random_password(length=32):
     return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
 
-class SAASTemplate(models.Model):
+class SAASTemplate(models.Model): 
     _name = 'saas.template'
     _description = 'Database Template'
 
@@ -71,6 +71,7 @@ class SAASTemplate(models.Model):
 
     def action_create_build(self):
         self.ensure_one()
+        
         if any([rec.state == 'done' for rec in self.operator_ids]):
             return {
                 'type': 'ir.actions.act_window',
@@ -224,12 +225,16 @@ class SAASTemplateLine(models.Model):
                 self.operator_db_name,
                 self.template_id.template_demo,
             )
+            build.with_delay().action_install_missing_mandatory_modules() 
+
             self.operator_id.with_delay().build_post_init(build, self.template_id.build_post_init, key_values)
         else:
             build.create_db(
                 self.operator_db_name,
                 self.template_id.template_demo,
             )
+            build.action_install_missing_mandatory_modules() 
+
             self.operator_id.build_post_init(build, self.template_id.build_post_init, key_values)
 
         return build
